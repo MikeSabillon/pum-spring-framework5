@@ -1,4 +1,4 @@
-package sabillon.pumspring;
+package sabillon.pum.web;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -6,9 +6,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class PumSpringBootApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(PumSpringBootApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(PumSpringBootApplication.class, args);
+    }
 
 }
-
