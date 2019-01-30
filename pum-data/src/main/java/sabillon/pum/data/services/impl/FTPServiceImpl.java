@@ -15,29 +15,46 @@ import sabillon.pum.data.services.FTPService;
 *@author Miguel Sabillon
 */
 
+/**
+ * The Class FTPServiceImpl.
+ */
 @Service
 public class FTPServiceImpl implements FTPService {
 
+    /** The logger. */
     private static Logger LOGGER = LoggerFactory.getLogger(FTPServiceImpl.class);
 
+    /** The server. */
     @Value("${ftp.server}")
     private String server;
 
+    /** The port. */
     @Value("${ftp.port}")
     private Integer port;
 
+    /** The user. */
     @Value("${ftp.user}")
     private String user;
 
+    /** The pass. */
     @Value("${ftp.pass}")
     private String pass;
 
+    /** The client. */
     private FTPClient client;
 
+    /**
+     * Instantiates a new FTP service impl.
+     */
     public FTPServiceImpl() {
         this.client = new FTPClient();
     }
 
+    /*
+     * (non-Javadoc)
+     * 
+     * @see sabillon.pum.data.services.FTPService#open()
+     */
     @Override
     public FTPClient open() throws SocketException, IOException {
         this.client.connect(this.server, this.port);
@@ -45,6 +62,11 @@ public class FTPServiceImpl implements FTPService {
         return this.client;
     }
 
+    /*
+     * (non-Javadoc)
+     * 
+     * @see sabillon.pum.data.services.FTPService#close()
+     */
     @Override
     public boolean close() throws Exception {
         this.client.logout();

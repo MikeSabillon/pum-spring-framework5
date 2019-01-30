@@ -1,24 +1,21 @@
 package sabillon.pum.web.controllers;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
-/**
- * @author Miguel Sabillon The Class PhotoController.
- */
-@RestController
-@RequestMapping("/photo")
-public class PhotoController {
+public interface PhotoController {
 
-    /**
-     * Gets the photo example.
-     *
-     * @return the photo example
-     */
-    @GetMapping("/getPhoto")
-    public String getPhotoExample() {
-        return "Some Photo";
+    @PostMapping("/upload")
+    default ResponseEntity<Boolean> uploadPhoto() {
+        return new ResponseEntity<>(false, HttpStatus.NOT_IMPLEMENTED);
+    }
+
+    @GetMapping("/download")
+    default ResponseEntity<Byte[]> getPhoto(@RequestParam("id") Integer id) {
+        return new ResponseEntity<>(null, HttpStatus.NOT_IMPLEMENTED);
     }
 
 }
