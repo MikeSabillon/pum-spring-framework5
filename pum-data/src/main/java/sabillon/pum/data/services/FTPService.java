@@ -1,6 +1,11 @@
 package sabillon.pum.data.services;
 
+import java.util.List;
+
 import org.apache.commons.net.ftp.FTPClient;
+
+import sabillon.pum.data.dtos.PhotoDto;
+import sabillon.pum.data.models.UploadReportPhoto;
 
 /*
 *@author Miguel Sabillon
@@ -29,6 +34,13 @@ public interface FTPService {
      */
     boolean close() throws Exception;
 
-    // List<T> uploadPhotos(List<PhotoDto> photos);
+    /**
+     * Upload photos.
+     *
+     * @param photos
+     *            the photos
+     * @return the list
+     */
+    List<UploadReportPhoto> uploadPhotos(List<PhotoDto> photos);
 
 }

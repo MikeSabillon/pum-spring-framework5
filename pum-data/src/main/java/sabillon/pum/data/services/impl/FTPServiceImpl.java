@@ -2,6 +2,7 @@ package sabillon.pum.data.services.impl;
 
 import java.io.IOException;
 import java.net.SocketException;
+import java.util.List;
 
 import org.apache.commons.net.ftp.FTPClient;
 import org.slf4j.Logger;
@@ -9,6 +10,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
+import sabillon.pum.data.dtos.PhotoDto;
+import sabillon.pum.data.models.UploadReportPhoto;
+import sabillon.pum.data.repositories.UploadReportPhotoRepository;
 import sabillon.pum.data.services.FTPService;
 
 /*
@@ -22,7 +26,9 @@ import sabillon.pum.data.services.FTPService;
 public class FTPServiceImpl implements FTPService {
 
     /** The logger. */
-    private static Logger LOGGER = LoggerFactory.getLogger(FTPServiceImpl.class);
+    private final Logger logger = LoggerFactory.getLogger(FTPServiceImpl.class);
+
+    private final UploadReportPhotoRepository uploadReportPhotoRepository;
 
     /** The server. */
     @Value("${ftp.server}")
@@ -43,11 +49,8 @@ public class FTPServiceImpl implements FTPService {
     /** The client. */
     private FTPClient client;
 
-    /**
-     * Instantiates a new FTP service impl.
-     */
-    public FTPServiceImpl() {
-        this.client = new FTPClient();
+    public FTPServiceImpl(UploadReportPhotoRepository uploadReportPhotoRepository) {
+        this.uploadReportPhotoRepository = uploadReportPhotoRepository;
     }
 
     /*
@@ -57,9 +60,12 @@ public class FTPServiceImpl implements FTPService {
      */
     @Override
     public FTPClient open() throws SocketException, IOException {
-        this.client.connect(this.server, this.port);
-        this.client.login(this.user, this.pass);
-        return this.client;
+        // logger.info("Attempting connection to ftp server...");
+        // this.client.connect(this.server, this.port);
+        // logger.info("Connected: " + this.client.isConnected());
+        // boolean loggedIn = this.client.login(this.user, this.pass);
+        // logger.info("Logged In: " + loggedIn);
+        return null;
     }
 
     /*
@@ -69,9 +75,21 @@ public class FTPServiceImpl implements FTPService {
      */
     @Override
     public boolean close() throws Exception {
-        this.client.logout();
-        this.client.disconnect();
-        return this.client.isConnected();
+        // logger.info("Closing connection to fpt...");
+        // this.client.logout();
+        // this.client.disconnect();
+        // logger.info("Connection closed successfully.");
+        return false;
+    }
+
+    /*
+     * (non-Javadoc)
+     * 
+     * @see sabillon.pum.data.services.FTPService#uploadPhotos(java.util.List)
+     */
+    @Override
+    public List<UploadReportPhoto> uploadPhotos(List<PhotoDto> photos) {
+        return null;
     }
 
 }

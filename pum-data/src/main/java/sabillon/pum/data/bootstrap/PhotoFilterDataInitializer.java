@@ -28,7 +28,6 @@ public class PhotoFilterDataInitializer implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         logger.info("Initializing Photo Filters");
-
         this.photoFilterRepository.save(new PhotoFilter("\\\\b-1\\\\b", new Timestamp(new Date().getTime())));
         this.photoFilterRepository.save(new PhotoFilter("\\\\b-2\\\\b", new Timestamp(new Date().getTime())));
         this.photoFilterRepository.save(new PhotoFilter("\\\\b-3\\\\b", new Timestamp(new Date().getTime())));
